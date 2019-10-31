@@ -14,7 +14,7 @@ export default function Pics({word}){
     unsplash.search.photos(word, 1, 1)
     .then(toJson)
     .then(json => {
-        console.log(json);
+        // console.log(json);
         let ID = json.results[0] ? json.results[0].id: '';
         setPhotoID(ID);
     });

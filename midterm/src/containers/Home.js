@@ -12,6 +12,9 @@ export default function Home(props){
 
 	const [madLib, setMadLib] = useState('');
 	const [photo, setPhoto] = useState('');
+	const [photo2, setPhoto2] = useState('');
+	const [photo3, setPhoto3] = useState('');
+
 	const [vals, setVals] = useState('');
 
 	var x = [];
@@ -19,7 +22,7 @@ export default function Home(props){
 	function generateMadLib(minlength, maxlength){
 		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${minlength}&maxlength=${maxlength}`)
 		.then(function(response){
-			console.log('response', response);
+			// console.log('response', response);
 			setMadLib(response);
 			isSuccess(true);
 			setErrorMessage(`${success.status}: ${'Success'}`);
@@ -40,17 +43,21 @@ export default function Home(props){
 	function update(){
   		x = document.getElementsByClassName("myText").length;
   		let result = madLib.data ? madLib.data.value[0]: '';
-  		result += document.getElementsByClassName("myText")[0].value;
+  		
   		for (let i = 0; i < x; i++){
   			result += document.getElementsByClassName("myText")[i].value;
   			result += madLib.data.value[i+1];
 		}
   		setVals(result);
-  		setPhoto(result);
-  		var x = document.getElementById("photo");
-  			if (x.style.display === "none") {
-    			x.style.display = "block";
-    		}
+  		let pic = document.getElementsByClassName("myText")[0].value;
+  		setPhoto(pic);
+  		pic = document.getElementsByClassName("myText")[1].value;
+  		setPhoto2(pic);
+  		pic = document.getElementsByClassName("myText")[2].value;
+  		setPhoto3(pic);
+  		var y = document.getElementById("photo"); 
+    	y.style.display = "block";
+ 	
 	}
 
 	return(
@@ -61,6 +68,8 @@ export default function Home(props){
 			<div id="lib">{vals}</div> 
 			<div id="photo">
 				<Pics word={photo}></Pics>
+				<Pics word={photo2}></Pics>
+				<Pics word={photo3}></Pics>
 			</div>
 			
 			<Form arr={madLib.data ? madLib.data.blanks: ''}></Form>
