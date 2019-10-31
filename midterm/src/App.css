@@ -26,6 +26,10 @@
 
 }
 
+h1{
+  color: #4CAF50;
+}
+
 .button {
   background-color: #4CAF50; /* Green */
   border: none;

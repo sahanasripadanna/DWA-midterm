@@ -74,7 +74,7 @@ export default function Home(props){
 			
 			<Form arr={madLib.data ? madLib.data.blanks: ''}></Form>
 
-			<button onClick={()=>update()}>generate MadLib!</button>
+			<button class="button" onClick={()=>update()}>generate MadLib!</button>
 
 			
 
